@@ -2428,7 +2428,7 @@ function applyLang(l){LANG=l==="en"||I18N[l]?l:"en";try{localStorage.setItem("la
   for(const[n,v]of STATIC){const t=v.trim();n.nodeValue=v.replace(t,L(t))}$("note").textContent=LANG!=="en"&&I18N[LANG]["@note"]||NOTE_EN;try{resOpts()}catch(e){}
   if(base){stats();legend();renderLog();panel();resOpts();$("play").textContent=S$(SIM.on?"Pause":"Play");personWin();histOpts();paramList();drawHist();savedLabel();coresLabel();drawTimeline();draw()}}
 fetch("i18n.json").then(r=>r.json()).then(j=>{I18N=j;$("lang").innerHTML=Object.entries(j.names).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");let p=null;try{p=localStorage.getItem("lang")}catch(e){}
-  if(p!=="en"&&!j[p])p=(navigator.languages||[navigator.language||"en"]).map(x=>x.slice(0,2)).find(x=>x==="en"||j[x])||"en";applyLang(p)}).catch(()=>{$("lang").hidden=true});
+  if(p!=="en"&&!j[p])p="en";applyLang(p)}).catch(()=>{$("lang").hidden=true});
 $("lang").onchange=e=>applyLang(e.target.value);
 // v21: optional site settings in site.json: a support link (https) and an AdSense unit (ca-pub-... client and a slot id).
 // Nothing is shown and no ad script loads until they are filled in.
